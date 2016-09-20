@@ -1,0 +1,5 @@
+C:\Users\Grant\Documents\Visual Studio 2015\Projects\obj\x86\Debug\PrettyPrinter.csprojResolveAssemblyReference.cache
+C:\Users\Grant\Documents\Visual Studio 2015\Projects\bin\Debug\PrettyPrinter.exe
+C:\Users\Grant\Documents\Visual Studio 2015\Projects\bin\Debug\PrettyPrinter.pdb
+C:\Users\Grant\Documents\Visual Studio 2015\Projects\obj\x86\Debug\PrettyPrinter.exe
+C:\Users\Grant\Documents\Visual Studio 2015\Projects\obj\x86\Debug\PrettyPrinter.pdb
