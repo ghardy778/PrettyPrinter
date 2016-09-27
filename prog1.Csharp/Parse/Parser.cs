@@ -47,13 +47,80 @@ namespace Parse
   
         public Node parseExp()
         {
+            Token curToken = scanner.getNextToken();
             // TODO: write code for parsing an exp
+            //     I wrote the basic structure of taking a token
+            //     and creating a node from it based on it's type.
+            //    We will add how the tree comes into play later.
+
+            //#t grammar
+            if (curToken == new Token(TokenType.TRUE))
+            {
+                return new BoolLit(true);
+            }
+            //#f grammar
+            else if (curToken == new Token(TokenType.FALSE))
+            {
+                return new BoolLit(false);
+            }
+
+            // ( rest grammar
+            else if (curToken == new Token(TokenType.LPAREN))
+            {
+                return this.parseRest();
+            }
+
+            // Identifier grammar
+            else if (curToken == new Token(TokenType.IDENT))
+            {
+                return new Ident(curToken.getName());
+            }
+
+            // Int_constant grammar
+            else if (curToken == new Token(TokenType.INT))
+            {
+                return new IntLit(curToken.getIntVal());
+            }
+
+            // String_constant grammar
+            else if (curToken == new Token(TokenType.STRING))
+            {
+                return new StringLit(curToken.getStringVal());
+            }
+
+            // ' exp grammar
+            // GRANT
+            else if (curToken == new Token(TokenType.QUOTE))
+            {
+                //Not quite sure what to do here, it needs to call parseExp() again 
+                //while including the ' somehow
+                return new 
+            }
+
             return null;
         }
   
         protected Node parseRest()
         {
             // TODO: write code for parsing a rest
+            Token curToken = scanner.getNextToken();
+
+            // ) grammar
+            // GRANT
+            // Not sure if cons is the right thing
+            if(curToken == new Token(TokenType.RPAREN))
+            {
+                return new Cons(null, null);
+            }
+            //exp+ [ . exp ] )'
+            // GRANT:
+            // this grammar stands for one or more expressions, 
+            // optional .exp RPAREN.  Not sure if . exp is symbol for anything
+            else
+            {
+                
+            }
+
             return null;
         }
 
