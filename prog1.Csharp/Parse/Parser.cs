@@ -94,7 +94,7 @@ namespace Parse
             {
                 //Not quite sure what to do here, it needs to call parseExp() again 
                 //while including the ' somehow
-                return new 
+                return new StringLit("/'"+ parseExp().getStringVal()+ parseExp().getStringVal())    //wrong but use parseExp() to get exp inside quote
             }
 
             return null;
@@ -102,7 +102,7 @@ namespace Parse
   
         protected Node parseRest()
         {
-            // TODO: write code for parsing a rest
+            // TODO: write code for parsing a rest.. no
             Token curToken = scanner.getNextToken();
 
             // ) grammar

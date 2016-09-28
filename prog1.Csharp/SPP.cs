@@ -18,7 +18,7 @@ public class SPP
             Console.Error.WriteLine("Usage: mono SPP [-d]");
             return 1;
         }
-        
+        System.Threading.Thread.Sleep(5000);
         // If command line option -d is provided, debug the scanner.
         if (args.Length == 1 && args[0].Equals("-d"))
         {
