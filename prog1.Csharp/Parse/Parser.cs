@@ -5,6 +5,7 @@
 //   class Parser;
 //
 // Parses the language
+// Changed rest grammar to remove left cursion and common left factors
 //
 //   exp  ->  ( rest
 //         |  #f
@@ -14,7 +15,9 @@
 //         |  string_constant
 //         |  identifier
 //    rest -> )
-//         |  exp+ [. exp] )
+//         | exp X
+//    X -> rest
+//         | . exp
 //
 // and builds a parse tree.  Lists of the form (rest) are further
 // `parsed' into regular lists and special forms in the constructor
@@ -43,31 +46,38 @@ namespace Parse
 	
         private Scanner scanner;
 
+        //Every where I used the scanner I used the variable name scanner,
+        // would the code be affected if I used s instead?
         public Parser(Scanner s) { scanner = s; }
+
+        private Node t = new BoolLit(true);  // Create true node with t pointer
+        private Node f = new BoolLit(false); // Create f node with f pointer
+        private Node nil = new Nil();
   
         public Node parseExp()
         {
             Token curToken = scanner.getNextToken();
             // TODO: write code for parsing an exp
-            //     I wrote the basic structure of taking a token
-            //     and creating a node from it based on it's type.
-            //    We will add how the tree comes into play later.
+            // Began the tree stucture and I believe most of it should be work fine
 
             //#t grammar
             if (curToken == new Token(TokenType.TRUE))
             {
-                return new BoolLit(true);
+
+                return t;
             }
             //#f grammar
             else if (curToken == new Token(TokenType.FALSE))
             {
-                return new BoolLit(false);
+                return f;
             }
 
             // ( rest grammar
+            // Not 100% on this one.  The first node should be rest as it is in the grammar
+            // But the second node, I'm guessing it will be parse rest as well
             else if (curToken == new Token(TokenType.LPAREN))
             {
-                return this.parseRest();
+                return new Cons(parseRest(), parseRest());
             }
 
             // Identifier grammar
@@ -89,12 +99,9 @@ namespace Parse
             }
 
             // ' exp grammar
-            // GRANT
-            else if (curToken == new Token(TokenType.QUOTE))
+             else if (curToken == new Token(TokenType.QUOTE))
             {
-                //Not quite sure what to do here, it needs to call parseExp() again 
-                //while including the ' somehow
-                return new StringLit("/'"+ parseExp().getStringVal()+ parseExp().getStringVal())    //wrong but use parseExp() to get exp inside quote
+                 return new Cons(parseExp(), parseRest());
             }
 
             return null;
@@ -110,15 +117,18 @@ namespace Parse
             // Not sure if cons is the right thing
             if(curToken == new Token(TokenType.RPAREN))
             {
-                return new Cons(null, null);
+                return nil;
             }
-            //exp+ [ . exp ] )'
-            // GRANT:
-            // this grammar stands for one or more expressions, 
-            // optional .exp RPAREN.  Not sure if . exp is symbol for anything
+            // exp . exp grammar
+            else if (curToken.getName().Equals('.'))
+            {
+                curToken = scanner.getNextToken();
+                return new Cons(parseExp(), parseExp());
+            }
+            // exp rest grammar
             else
             {
-                
+                return new Cons(parseExp(), parseRest());
             }
 
             return null;

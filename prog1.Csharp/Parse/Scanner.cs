@@ -16,7 +16,6 @@ namespace Parse
 
         public Scanner(TextReader i) { In = i; }
   
-        // TODO: Add any other methods you need
 
         public Token getNextToken()
         {
