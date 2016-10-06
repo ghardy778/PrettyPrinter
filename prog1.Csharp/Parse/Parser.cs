@@ -73,11 +73,11 @@ namespace Parse
             }
 
             // ( rest grammar
-            // Not 100% on this one.  The first node should be rest as it is in the grammar
-            // But the second node, I'm guessing it will be parse rest as well
+
             else if (curToken == new Token(TokenType.LPAREN))
             {
-                return new Cons(parseRest(), parseRest());
+                //return new Cons(parseRest(), parseRest());
+                return parseRest();
             }
 
             // Identifier grammar
@@ -101,7 +101,7 @@ namespace Parse
             // ' exp grammar
              else if (curToken == new Token(TokenType.QUOTE))
             {
-                 return new Cons(parseExp(), parseRest());
+                    return new Cons(new Ident("quote"), new Cons(parseExp(), nil));
             }
 
             return null;
@@ -113,8 +113,8 @@ namespace Parse
             Token curToken = scanner.getNextToken();
 
             // ) grammar
-            // GRANT
-            // Not sure if cons is the right thing
+
+     
             if(curToken == new Token(TokenType.RPAREN))
             {
                 return nil;

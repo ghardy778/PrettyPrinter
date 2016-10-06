@@ -29,6 +29,51 @@ namespace Tree
         {
             // TODO: implement this function and any helper functions
             // you might need.
+            if (car.isSymbol())
+            {
+                String name = car.getName();
+                if(name.Equals("if"))
+                {
+                    form = new If();
+                }
+                else if(name.Equals("begin"))
+                {
+                    form = new Begin();
+                }
+                else if (name.Equals("cond"))
+                {
+                    form = new Cond();
+                }
+                else if (name.Equals("define"))
+                {
+                    form = new Define();
+                }
+                else if (name.Equals("lambda"))
+                {
+                    form = new Lambda();
+                }
+                else if (name.Equals("let"))
+                {
+                    form = new Let();
+                }
+                else if (name.Equals("quote"))
+                {
+                    form = new Quote();
+                }
+                else if (name.Equals("set"))
+                {
+                    form = new Set();
+                }
+                else
+                {
+                    form = new Regular();
+                }
+
+            }
+            else 
+            {
+                form = new Regular();
+            }
         }
  
         public override void print(int n)
@@ -44,6 +89,18 @@ namespace Tree
         public override bool isPair()
         {
             return true;
+        }
+
+        public override Node getCar() { return car; }
+        public override Node getCdr() { return cdr; }
+        public override void setCar(Node a)
+        {
+            car = a;
+            parseList();
+        }
+        public override void setCdr(Node d)
+        {
+            cdr = d;
         }
     }
 }

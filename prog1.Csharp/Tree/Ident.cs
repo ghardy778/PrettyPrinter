@@ -24,6 +24,11 @@ namespace Tree
             Console.WriteLine(name);
         }
 
+        public override String getName()
+        {
+            return name;
+        }
+
         public override bool isSymbol()
         {
             return true;

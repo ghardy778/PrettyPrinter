@@ -40,13 +40,15 @@ namespace Tree
         public virtual bool isNull()   { return false; }  // Nil
         public virtual bool isPair()   { return false; }  // Cons
 
-        // TODO: Report an error in these default methods and implement them
+        // Done with implementation(not errors) TODO: Report an error in these default methods and implement them
         // in class Cons.  After setCar, a Cons cell needs to be `parsed' again
         // using parseList.
         public virtual Node getCar() { return null; }
         public virtual Node getCdr() { return null; }
         public virtual void setCar(Node a) { }
         public virtual void setCdr(Node d) { }
+
+        public virtual string getName() { return null; } // This is for the Ident class.  It lets us determine what Ident is being used
     }
 }
 
