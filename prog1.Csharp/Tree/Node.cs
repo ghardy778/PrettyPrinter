@@ -23,7 +23,7 @@ namespace Tree
         // encode that in the sign bit of n. If you need additional parameters,
         // make sure that you define the method print in all the appropriate
         // subclasses of Node as well.
-        public virtual void print(int n, bool p)
+        public virtual void print(int n, bool p)    //p is true if open parenthesis was printed by caller
         {
             print(n);
         }
