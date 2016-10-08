@@ -57,7 +57,7 @@ public class SPP
             root = parser.parseExp();
         }
 
-        System.Threading.Thread.Sleep(5000);
+        System.Threading.Thread.Sleep(15000);
 
         return 0;
     }

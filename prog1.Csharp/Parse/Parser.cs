@@ -113,7 +113,13 @@ namespace Parse
             return null;
         }
 
-        public Node parseExp(Token curToken)
+        //Adding in another ParseExp with a curToken param
+        //The only difference between the two ParseExp is
+        //the original one reads a token from the file
+        //while this parseExp allows you to pass a token to read
+        //in order to not advance to the next token of the file if we are
+        //still interpreting that token.
+        private Node parseExp(Token curToken)
         {
 
 
@@ -171,7 +177,6 @@ namespace Parse
         protected Node parseRest()
         {
           
-            // TODO: write code for parsing a rest.. no
             Token curToken = scanner.getNextToken();
 
             //error check to see if they forgot RPAREN

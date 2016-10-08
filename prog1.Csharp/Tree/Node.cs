@@ -49,6 +49,7 @@ namespace Tree
         public virtual void setCdr(Node d) { }
 
         public virtual string getName() { return null; } // This is for the Ident class.  It lets us determine what Ident is being used
+        public virtual void printNewLine(int n, bool p) { }
     }
 }
 

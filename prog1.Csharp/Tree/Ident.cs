@@ -18,10 +18,16 @@ namespace Tree
             // There got to be a more efficient way to print n spaces.
             //for (int i = 0; i < n; i++)
             //        Console.Write(" ");
+            // || !name.Equals("cond") || !name.Equals("let")
             String spaces = new String(' ', n);
             Console.Write(spaces);
+            if (!(name.Equals("begin") || name.Equals("cond") || name.Equals("let")))
+            {
+                Console.Write(name);
+            }
+            
 
-            Console.Write(name);
+
         }
 
         public override String getName()
