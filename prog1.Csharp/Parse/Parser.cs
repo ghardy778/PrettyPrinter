@@ -53,69 +53,136 @@ namespace Parse
         private Node t = new BoolLit(true);  // Create true node with t pointer
         private Node f = new BoolLit(false); // Create f node with f pointer
         private Node nil = new Nil();
-  
+
+
         public Node parseExp()
         {
+            
             Token curToken = scanner.getNextToken();
             // TODO: write code for parsing an exp
             // Began the tree stucture and I believe most of it should be work fine
-
+   
             //#t grammar
-            if (curToken == new Token(TokenType.TRUE))
+            if(curToken == null)
+            {
+                return null;
+            }
+            else if (curToken.getType() == new Token(TokenType.TRUE).getType())
             {
 
                 return t;
             }
             //#f grammar
-            else if (curToken == new Token(TokenType.FALSE))
+            else if (curToken.getType() == new Token(TokenType.FALSE).getType())
             {
                 return f;
             }
 
             // ( rest grammar
 
-            else if (curToken == new Token(TokenType.LPAREN))
+            else if (curToken.getType() == new Token(TokenType.LPAREN).getType())
             {
                 //return new Cons(parseRest(), parseRest());
                 return parseRest();
             }
 
             // Identifier grammar
-            else if (curToken == new Token(TokenType.IDENT))
+            else if (curToken.getType() == new Token(TokenType.IDENT).getType())
             {
                 return new Ident(curToken.getName());
             }
 
             // Int_constant grammar
-            else if (curToken == new Token(TokenType.INT))
+            else if (curToken.getType() == new Token(TokenType.INT).getType())
             {
                 return new IntLit(curToken.getIntVal());
             }
 
             // String_constant grammar
-            else if (curToken == new Token(TokenType.STRING))
+            else if (curToken.getType() == new Token(TokenType.STRING).getType())
             {
                 return new StringLit(curToken.getStringVal());
             }
 
             // ' exp grammar
-             else if (curToken == new Token(TokenType.QUOTE))
+             else if (curToken.getType() == new Token(TokenType.QUOTE).getType())
             {
                     return new Cons(new Ident("quote"), new Cons(parseExp(), nil));
             }
 
             return null;
         }
-  
+
+        public Node parseExp(Token curToken)
+        {
+
+
+            if (curToken == null)
+            {
+                return null;
+            }
+            //#t grammar
+            else if (curToken.getType() == new Token(TokenType.TRUE).getType())
+            {
+
+                return t;
+            }
+            //#f grammar
+            else if (curToken.getType() == new Token(TokenType.FALSE).getType())
+            {
+                return f;
+            }
+
+            // ( rest grammar
+
+            else if (curToken.getType() == new Token(TokenType.LPAREN).getType())
+            {
+                //return new Cons(parseRest(), parseRest());
+                return parseRest();
+            }
+
+            // Identifier grammar
+            else if (curToken.getType() == new Token(TokenType.IDENT).getType())
+            {
+                return new Ident(curToken.getName());
+            }
+
+            // Int_constant grammar
+            else if (curToken.getType() == new Token(TokenType.INT).getType())
+            {
+                return new IntLit(curToken.getIntVal());
+            }
+
+            // String_constant grammar
+            else if (curToken.getType() == new Token(TokenType.STRING).getType())
+            {
+                return new StringLit(curToken.getStringVal());
+            }
+
+            // ' exp grammar
+            else if (curToken.getType() == new Token(TokenType.QUOTE).getType())
+            {
+                return new Cons(new Ident("quote"), new Cons(parseExp(), nil));
+            }
+
+            return null;
+        }
+
         protected Node parseRest()
         {
+          
             // TODO: write code for parsing a rest.. no
             Token curToken = scanner.getNextToken();
 
-            // ) grammar
+            //error check to see if they forgot RPAREN
+            //if they did, then it corrects it for them
+            if(curToken == null)
+            {
+                return nil;
+            }
 
-     
-            if(curToken == new Token(TokenType.RPAREN))
+            // ) grammar
+            if (curToken.getType() == new Token(TokenType.RPAREN).getType())
             {
                 return nil;
             }
@@ -128,10 +195,10 @@ namespace Parse
             // exp rest grammar
             else
             {
-                return new Cons(parseExp(), parseRest());
+                return new Cons(parseExp(curToken), parseRest());
             }
 
-            return null;
+          
         }
 
         // TODO: Add any additional methods you might need.

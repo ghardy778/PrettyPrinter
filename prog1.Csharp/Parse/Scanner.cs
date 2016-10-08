@@ -28,8 +28,10 @@ namespace Parse
                 // buffer, but reading individual characters from the
                 // input stream is easier.
                 ch = In.Read();
-   
+
                 //DONE TODO: skip white space and comments
+                if (ch == 10)
+                    return null;
                 if (ch >= 9 && ch <= 13 || ch == 32)
                         {
                     return getNextToken();
@@ -102,7 +104,7 @@ namespace Parse
                 {
                     int i = ch - '0';
                     int length = 0;
-                    String number = "";
+                    String number = "" +(char)ch;
 
                     while (In.Peek() >= '0' && In.Peek() <= '9')
                     {
@@ -111,6 +113,7 @@ namespace Parse
                         length++;
 
                     }
+
                     i = Convert.ToInt32(number);
                     // DONE: scan the number and convert it to an integer
 
@@ -144,9 +147,17 @@ namespace Parse
 
                     // make sure that the character following the integer
                     // is not removed from the input stream
-
-                    return new IdentToken(new String(buf, 0, length));
+                    String ident = new string(buf, 0, length);
+                    ident = ident.ToLower();
+                    if(ident.Equals("quote"))
+                        return new Token(TokenType.QUOTE);
+                    else
+                        return new IdentToken(ident);
                 }
+
+              
+
+                
 
                 // Illegal character
                 else

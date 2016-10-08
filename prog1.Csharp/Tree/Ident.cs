@@ -21,7 +21,7 @@ namespace Tree
             String spaces = new String(' ', n);
             Console.Write(spaces);
 
-            Console.WriteLine(name);
+            Console.Write(name);
         }
 
         public override String getName()

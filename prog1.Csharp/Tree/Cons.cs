@@ -60,7 +60,7 @@ namespace Tree
                 {
                     form = new Quote();
                 }
-                else if (name.Equals("set"))
+                else if (name.Equals("set!"))
                 {
                     form = new Set();
                 }

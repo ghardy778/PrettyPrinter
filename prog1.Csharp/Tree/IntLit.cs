@@ -21,7 +21,7 @@ namespace Tree
             String spaces = new String(' ', n);
             Console.Write(spaces);
 
-            Console.WriteLine(intVal);
+            Console.Write(intVal);
         }
 
         public override bool isNumber()

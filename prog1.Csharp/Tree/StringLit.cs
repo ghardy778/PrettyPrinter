@@ -21,7 +21,7 @@ namespace Tree
             String spaces = new String(' ', n);
             Console.Write(spaces);
 
-            Console.WriteLine("\"" + stringVal + "\"");
+            Console.Write("\"" + stringVal + "\"");
         }
 
         public override bool isString()

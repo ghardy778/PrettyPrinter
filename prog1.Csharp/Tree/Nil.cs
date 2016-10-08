@@ -17,13 +17,14 @@ namespace Tree
             // There got to be a more efficient way to print n spaces.
             //for (int i = 0; i < n; i++)
             //        Console.Write(" ");
-            String spaces = new String(' ', n);
-            Console.Write(spaces);
+          // Never a space before an RPAREN
+         //   String spaces = new String(' ', n);
+         //   Console.Write(spaces);
 
             if (p)
-                Console.WriteLine(")");
+                Console.Write(")");
             else
-                Console.WriteLine("()");
+                Console.Write("()");
         }
 
         public override bool isNull()
