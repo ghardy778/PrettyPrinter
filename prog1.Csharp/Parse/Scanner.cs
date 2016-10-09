@@ -30,8 +30,8 @@ namespace Parse
                 ch = In.Read();
 
                 //DONE TODO: skip white space and comments
-               // if (ch == 10)
-               //     return null;
+                if (ch == 10)
+                    return null;
                 if (ch >= 9 && ch <= 13 || ch == 32)
                         {
                     return getNextToken();

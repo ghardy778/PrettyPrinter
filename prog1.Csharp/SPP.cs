@@ -55,9 +55,10 @@ public class SPP
         {
             root.print(0);
             root = parser.parseExp();
+            Console.WriteLine();
         }
 
-        System.Threading.Thread.Sleep(15000);
+
 
         return 0;
     }

@@ -10,10 +10,11 @@ namespace Tree
  
         // TODO: Add an appropriate constructor.
 	public Set() { }
-	
+	 
+        //Treat the same as regular
         public override void print(Node t, int n, bool p)
         {
-            // DONE TODO: Implement this function.
+            
             if (!p)
             {
                 Console.Write("(");

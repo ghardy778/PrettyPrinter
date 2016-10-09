@@ -13,27 +13,22 @@ namespace Tree
             print(n, false);
         }
 
+        //This prints the right PAREN in our printer
         public override void print(int n, bool p) {
-            // There got to be a more efficient way to print n spaces.
-            //for (int i = 0; i < n; i++)
-            //        Console.Write(" ");
-            // Never a space before an RPAREN
-            //   String spaces = new String(' ', n);
-            //   Console.Write(spaces);
 
+            //Never do we only want one space behind paren
+            //If greater than 1, then we indent accordingly.
+            if (n <= 1)
+                n = 0;
+            String spaces = new string(' ', n);
+            Console.Write(spaces);
             if (p)
                 Console.Write(")");
             else
                 Console.Write("()");
         }
 
-        public override void printNewLine(int n, bool p)
-        {
-            Console.WriteLine();
-            String spaces = new string(' ', n);
-            Console.Write(spaces);
-            Console.Write(")");
-        }
+
 
       
 

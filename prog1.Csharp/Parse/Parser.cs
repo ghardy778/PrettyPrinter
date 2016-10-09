@@ -195,7 +195,10 @@ namespace Parse
             else if (curToken.getName().Equals('.'))
             {
                 curToken = scanner.getNextToken();
-                return new Cons(parseExp(), parseExp());
+                if (curToken != null)
+                    return new Cons(parseExp(curToken), parseRest());
+                else
+                    return null;
             }
             // exp rest grammar
             else

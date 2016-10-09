@@ -13,7 +13,6 @@ namespace Tree
 
         public override void print(Node t, int n, bool p)
         {
-            // TODO: Implement this function.
             if (!p)
             {
                 Console.Write("(");
@@ -21,12 +20,25 @@ namespace Tree
             }
             Console.WriteLine("cond");
 
+            Node cdr = t.getCdr();
 
-            t.getCar().print(n + 4, true);
-            t.getCdr().getCar().print(n + 4, false);
-            t.getCdr().getCdr().printNewLine(n, false);
+            //While cdr is a cons,
+            //we indent the required spaces
+            //print the car of the cdr
+            //Write new line
+            //Then move the cdr to the next cdr.
+            while (cdr.isPair())
+            {
+                t.getCar().print(n + 4, true);  //This indents our printer by calling the same identifier call that just prints n spaces
+                cdr.getCar().print(n + 4, false);
+                Console.WriteLine("");
+                cdr = cdr.getCdr();
+            }
+            cdr.print(n, true);  //Prints the next node after cons are finished
+
         }
     }
 }
+
 
 

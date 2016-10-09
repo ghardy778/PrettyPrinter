@@ -27,8 +27,7 @@ namespace Tree
         // parsing up to the interpreter.
         void parseList()
         {
-            // TODO: implement this function and any helper functions
-            // you might need.
+
             if (car.isSymbol())
             {
                 String name = car.getName();

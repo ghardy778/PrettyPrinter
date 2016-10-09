@@ -6,17 +6,19 @@ namespace Tree
 {
     public class Regular : Special
     {
-        // TODO: Add any fields needed.
-    
-        // TODO: Add an appropriate constructor.
+      
         public Regular() { }
 
+        //if !p
+        //   Print LParen and make sure no indent after LParen
+        //   Print Cdr with 1 indent for space inbetween elements
+        //else
+        //   Print car with no indent bc it follows a Lparen
+        //   Print cdr with 1 indent to seperate elements of a list
         public override void print(Node t, int n, bool p)
         {
 
-            // Done TODO: Implement this function.
-            //         for (int i = 0; i < n; i++)
-            //               Console.Write(" ");
+   
 
             if (!p)
             {

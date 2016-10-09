@@ -12,16 +12,15 @@ namespace Tree
         {
             name = n;
         }
-
+        // Print n spaces for indentation
+        //Write name of ident as long as it's not one of these special idents listed.
+        //These idents are printed in their respective specail print classes.
         public override void print(int n)
         {
-            // There got to be a more efficient way to print n spaces.
-            //for (int i = 0; i < n; i++)
-            //        Console.Write(" ");
-            // || !name.Equals("cond") || !name.Equals("let")
+            
             String spaces = new String(' ', n);
             Console.Write(spaces);
-            if (!(name.Equals("begin") || name.Equals("cond") || name.Equals("let")))
+            if (!(name.Equals("begin") || name.Equals("cond") || name.Equals("let") || name.Equals("if") || name.Equals("lambda") || name.Equals("define")))
             {
                 Console.Write(name);
             }
